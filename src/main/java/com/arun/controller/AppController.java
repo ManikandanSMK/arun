@@ -35,7 +35,7 @@ public class AppController {
 
 	@Value("${server-id}")
 	int serverId;
-	
+
 	@Value("${tier2.response}")
 	String response;
 
@@ -47,7 +47,7 @@ public class AppController {
 	@GetMapping("/")
 	public String index(HttpServletRequest request, HttpServletResponse resp) {
 		Cookie cookieArray[] = request.getCookies();
-		//print(cookieArray);
+		// print(cookieArray);
 		Cookie cookies = WebUtils.getCookie(request, "cookie-arun");
 		String cookieValue = cookies != null ? cookies.getValue() : null;
 		System.out.println("Cookie Val at index===========" + cookieValue);
@@ -101,26 +101,25 @@ public class AppController {
 	@GetMapping(value = "/call-backend")
 	@ResponseBody
 	public void callBackend(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-	if(req.getLocalPort()==8081) {
-		backEndCall(resp);
-		return;
-	}
-	
-	String val=req.getRequestURL().toString();
-	val=val.replace("8080","8081");
-	HttpClient client=HttpClientBuilder.create().build();
-	HttpGet get=new HttpGet(val);
-	HttpResponse response=client.execute(get);
-	String ans=EntityUtils.toString(response.getEntity());
-	resp.getOutputStream().write(ans.getBytes());
-	resp.setHeader("Content-Type", "text/html");
+		if (req.getLocalPort() == 8081) {
+			backEndCall(resp);
+			return;
+		}
+
+		String val = req.getRequestURL().toString();
+		val = val.replace("8080", "8081");
+		HttpClient client = HttpClientBuilder.create().build();
+		HttpGet get = new HttpGet(val);
+		HttpResponse response = client.execute(get);
+		String ans = EntityUtils.toString(response.getEntity());
+		resp.getOutputStream().write(ans.getBytes());
+		resp.setHeader("Content-Type", "text/html");
 	}
 
 	private void backEndCall(HttpServletResponse resp) throws Exception {
-		resp.setHeader("Content-Type","text/html");
+		resp.setHeader("Content-Type", "text/html");
 		resp.getOutputStream().write(response.getBytes());
-		
+
 	}
 
-	
 }
