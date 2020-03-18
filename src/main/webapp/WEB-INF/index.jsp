@@ -1,19 +1,22 @@
 <html>
 <body>
 <h2 id="test"></h2>
-<button value="ajax call" onclick="ajaxCall()"> </button>
+<button onclick="ajaxCall()">Click Me </button>
 <script type="text/javascript">
 function ajaxCall(){
+	console.log("ajax function is called");
 	var ajax=new XMLHttpRequest();
-	var url="${request.url}"+"/call";
+	var url="${requestScope.url}"+"/call";
+	console.log("URL======"+url);
 	ajax.onreadystatechange=function(){
-		if(request.readyState==4){
-			var resp=request.responseText;
+		if(ajax.readyState==4){
+			var resp=ajax.responseText;
 			document.getElementById("test").innerHTML=resp;
 			
 		}
 	}
 	ajax.open("GET",url,true)
+	ajax.send();
 }
 
 </script>
