@@ -35,7 +35,7 @@ import org.springframework.web.util.WebUtils;
 @RestController
 public class AppController {
 
-	@Value("${server-name}")
+	@Value("${server_name}")
 	String serverName;
 
 	@PostConstruct
