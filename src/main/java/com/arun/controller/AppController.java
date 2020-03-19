@@ -38,18 +38,26 @@ public class AppController {
 	@Value("${server_name}")
 	String serverName;
 
+	@Value("${cookie-value}")
+	String cookieValue;
+
 	@PostConstruct
 	public void init() {
 		System.out.println("Server Name===============" + serverName);
 	}
 
 	@GetMapping("/test")
-	public String index(HttpServletRequest req) {
+	public void index(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		Cookie c = new Cookie("demo", cookieValue);
+		resp.addCookie(c);
 
-		System.out.println("ServerName======  " + serverName + "      Cookie-value====="
-				+ WebUtils.getCookie(req, "demo").getValue() + "      Expiry "
-				+ WebUtils.getCookie(req, "demo").getMaxAge());
-		return serverName;
+		resp.getOutputStream().write(serverName.getBytes());
+	}
+
+	@GetMapping("/ping")
+	public void ping(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+
+		resp.getOutputStream().write("pong".getBytes());
 	}
 
 }
