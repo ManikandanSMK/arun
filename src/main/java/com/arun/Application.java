@@ -10,12 +10,11 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 		
 	}
-	@Bean
-	public InternalResourceViewResolver viewResolver() {
-		InternalResourceViewResolver resolver=new InternalResourceViewResolver();
-		resolver.setPrefix("/WEB-INF/");
-		resolver.setSuffix(".jsp");
-		return resolver;
-	}
+	/*
+	 * @Bean public InternalResourceViewResolver viewResolver() {
+	 * InternalResourceViewResolver resolver=new InternalResourceViewResolver();
+	 * resolver.setPrefix("/WEB-INF/"); resolver.setSuffix(".jsp"); return resolver;
+	 * }
+	 */
 
 }
