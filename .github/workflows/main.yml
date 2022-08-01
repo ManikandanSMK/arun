@@ -35,5 +35,6 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           echo ${{github.head_ref}}
+          echo ${{github.ref}}
           ls ${{ github.workspace }}
           mvn  package
