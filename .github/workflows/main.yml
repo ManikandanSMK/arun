@@ -37,4 +37,4 @@ jobs:
           echo ${{github.head_ref}}
           ls ${{ github.workspace }}
           git checkout ${{github.head_ref}}
-          mvn  ${{github.head_ref}}/pom.xml package
+          mvn  package
