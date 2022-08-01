@@ -36,5 +36,4 @@ jobs:
           echo test, and deploy your project.
           echo ${{github.head_ref}}
           ls ${{ github.workspace }}
-          git checkout ${{github.head_ref}}
           mvn  package
